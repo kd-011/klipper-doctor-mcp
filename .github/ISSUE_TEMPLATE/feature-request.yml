@@ -1,0 +1,21 @@
+name: Feature request
+description: Something the server could expose, that the engine or Moonraker already does.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This server is read-only and focused on diagnosis. Printer control is out of scope. New rules go in the klipper-doctor repository.
+  - type: textarea
+    id: what
+    attributes:
+      label: What do you want an agent to be able to do?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Where does the data come from?
+      description: A klipper-doctor function, or a Moonraker endpoint with a link to its docs, and why it only reads.
+    validations:
+      required: true

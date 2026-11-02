@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Wrong diagnosis or a missing rule
+    url: https://github.com/kd-011/klipper-doctor/issues/new/choose
+    about: The rules live in klipper-doctor. Report diagnosis problems there.

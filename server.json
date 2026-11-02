@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kd-011/klipper-doctor-mcp",
+  "title": "Klipper Doctor",
+  "description": "Read-only Klipper diagnosis: explains why a print died and lints printer.cfg.",
+  "repository": { "url": "https://github.com/kd-011/klipper-doctor-mcp", "source": "github" },
+  "websiteUrl": "https://github.com/kd-011/klipper-doctor-mcp#readme",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "klipper-doctor-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "MOONRAKER_URL", "description": "Base URL of Moonraker, for example http://printer.local:7125. Optional: without it, logs and configs can still be passed as text or a file path.", "isRequired": false },
+        { "name": "MOONRAKER_API_KEY", "description": "Sent as the X-Api-Key header, if Moonraker needs one.", "isRequired": false, "isSecret": true },
+        { "name": "MOONRAKER_TOKEN", "description": "Sent as an Authorization Bearer header, if Moonraker needs one.", "isRequired": false, "isSecret": true },
+        { "name": "KLIPPER_DOCTOR_ALLOWED_DIRS", "description": "Colon-separated directories. When set, the path option can only read files inside them.", "isRequired": false }
+      ]
+    }
+  ]
+}

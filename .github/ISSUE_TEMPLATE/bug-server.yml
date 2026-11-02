@@ -1,0 +1,43 @@
+name: Bug, the MCP server
+description: A tool errors, returns the wrong shape, cannot reach Moonraker, or the server does not start.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A wrong diagnosis belongs in the klipper-doctor repository, where the rules live. Use this form for the server itself. Remove anything private (hostnames, usernames, IP addresses, API keys and tokens) before you paste.
+  - type: input
+    id: version
+    attributes:
+      label: klipper-doctor-mcp version
+      description: Output of `klipper-doctor-mcp --version`.
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: MCP client
+      description: For example Claude Code, Claude Desktop or Cursor, with its version.
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      description: Output of `node -v`.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What you called and what came back
+      description: The tool, the arguments (not the key or token) and the exact error or output.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true

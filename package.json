@@ -1,0 +1,61 @@
+{
+  "name": "klipper-doctor-mcp",
+  "version": "0.1.0",
+  "description": "A read-only MCP server that lets an AI agent diagnose a Klipper 3D printer: why a print died, and what is wrong with printer.cfg.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "klipper",
+    "moonraker",
+    "3d-printing",
+    "diagnostics",
+    "klippy.log",
+    "printer.cfg"
+  ],
+  "license": "MIT",
+  "author": "kd-011",
+  "mcpName": "io.github.kd-011/klipper-doctor-mcp",
+  "homepage": "https://github.com/kd-011/klipper-doctor-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kd-011/klipper-doctor-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kd-011/klipper-doctor-mcp/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "klipper-doctor-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "server.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "check": "tsc -p tsconfig.json --noEmit && node scripts/check-text.mjs && node scripts/render-demo.mjs --check",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "assets": "node scripts/render-demo.mjs",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.mjs",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "klipper-doctor": "github:kd-011/klipper-doctor",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}
