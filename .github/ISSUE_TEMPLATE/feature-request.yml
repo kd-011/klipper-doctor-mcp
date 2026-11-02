@@ -1,5 +1,5 @@
 name: Feature request
-description: Something the server could expose, that the engine or Moonraker already does.
+description: Something the engine or Moonraker already does that the server could expose.
 labels: [enhancement]
 body:
   - type: markdown

@@ -4,10 +4,10 @@ klipper-doctor-mcp is read-only by design. It never moves the printer, heats any
 
 ## What to know before you run it
 
-- **Local files.** The `path` option reads any file the server process can read and returns findings from it. Set `KLIPPER_DOCTOR_ALLOWED_DIRS` to restrict it to the directories you choose. Findings quote log lines as evidence, so a prompt-injected agent could use `path` to read lines of other files that happen to match a rule, which is why the allowlist exists.
-- **Logs are sensitive.** A `klippy.log` can contain hostnames, usernames, file paths, serial numbers and IP addresses. Whatever the agent reads is sent to your AI provider.
-- **Moonraker credentials.** `MOONRAKER_API_KEY` and `MOONRAKER_TOKEN` are sent only as request headers to `MOONRAKER_URL`. They are not logged or returned by any tool, and redirects are not followed. Keep them in the MCP client's `env` block, not in prompts. Use a Moonraker account or key you are happy to give read access.
-- **Network.** The server makes requests only to `MOONRAKER_URL`, and only if you set it. It does not phone home.
+- The `path` option reads any file the server process can read and returns findings from it. Set `KLIPPER_DOCTOR_ALLOWED_DIRS` to restrict it to the directories you choose. Findings quote log lines as evidence, so a prompt-injected agent could use `path` to read lines of other files that happen to match a rule, which is why the allowlist exists.
+- A `klippy.log` can contain hostnames, usernames, file paths, serial numbers and IP addresses. Whatever the agent reads is sent to your AI provider.
+- `MOONRAKER_API_KEY` and `MOONRAKER_TOKEN` are sent only as request headers to `MOONRAKER_URL`. They are not logged or returned by any tool, and redirects are not followed. Keep them in the MCP client's `env` block, not in prompts. Use a Moonraker account or key you are happy to give read access.
+- The server makes requests only to `MOONRAKER_URL`, and only if you set it. It does not phone home.
 
 ## Reporting a problem
 

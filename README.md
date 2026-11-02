@@ -6,11 +6,11 @@
 
 A read-only MCP server that lets an AI agent work out why a Klipper print died and what is wrong with `printer.cfg`.
 
-It wraps the rule engine from [klipper-doctor](https://github.com/kd-011/klipper-doctor). Every finding comes from a rule that cites the Klipper docs or source it is based on. The agent does not guess from the raw log.
+It wraps the rule engine from [klipper-doctor](https://github.com/kd-011/klipper-doctor). Every finding comes from a rule that cites the Klipper docs or source it is based on.
 
 ## Demo
 
-You ask your agent "why did my print stop?". It calls `diagnose_log` on the printer's `klippy.log` and gets this back. The text below is the real output of this server on `test/fixtures/heater-verify.log`, a synthetic log built from the message formats in the Klipper source. It is regenerated with `npm run assets`, and a test fails if it goes stale.
+You ask your agent "why did my print stop?". It calls `diagnose_log` on the printer's `klippy.log` and gets this back. The text below is the output of this server on `test/fixtures/heater-verify.log`, a synthetic log built from the message formats in the Klipper source. It is regenerated with `npm run assets`, and a test fails if it goes stale.
 
 <!-- demo:start -->
 ```markdown
@@ -36,9 +36,9 @@ The same call also returns the full report as structured JSON: every finding wit
 
 Node 18 or newer. The server speaks MCP over stdio, so your MCP client starts it for you.
 
-> Status: not published to npm yet. Until it is, build it from a clone (see [Develop](#develop)) and use `node /path/to/klipper-doctor-mcp/dist/cli.js` in place of `npx -y klipper-doctor-mcp` below. The `klipper-doctor` engine is installed from GitHub for now and switches to the npm package once that is published.
+> Not on npm yet. Until it is, build it from a clone (see [Develop](#develop)) and use `node /path/to/klipper-doctor-mcp/dist/cli.js` in place of `npx -y klipper-doctor-mcp` below. The `klipper-doctor` engine is installed from GitHub for now and moves to the npm package once that is published.
 
-**Claude Code**
+Claude Code:
 
 ```sh
 claude mcp add klipper-doctor -- npx -y klipper-doctor-mcp
@@ -46,7 +46,7 @@ claude mcp add klipper-doctor -- npx -y klipper-doctor-mcp
 claude mcp add klipper-doctor -e MOONRAKER_URL=http://printer.local:7125 -- npx -y klipper-doctor-mcp
 ```
 
-**Claude Desktop** (`claude_desktop_config.json`)
+Claude Desktop (`claude_desktop_config.json`):
 
 ```json
 {
@@ -60,7 +60,7 @@ claude mcp add klipper-doctor -e MOONRAKER_URL=http://printer.local:7125 -- npx 
 }
 ```
 
-**Cursor** (`.cursor/mcp.json`, or `~/.cursor/mcp.json` for all projects)
+Cursor (`.cursor/mcp.json`, or `~/.cursor/mcp.json` for all projects):
 
 ```json
 {
@@ -86,7 +86,7 @@ claude mcp add klipper-doctor -e MOONRAKER_URL=http://printer.local:7125 -- npx 
 | `explain_rule` | What one rule catches, the usual fix and the Klipper docs page behind it. | `id` |
 | `printer_status` | What Moonraker reports: Klippy's state and message, and the print state. | None. Needs `MOONRAKER_URL`. |
 
-`diagnose_log` and `lint_config` return a short markdown summary as text and the full report as structured JSON. Where the log is, in order of effort: paste it, point at a file, or let the server fetch it from Moonraker.
+`diagnose_log` and `lint_config` return a short markdown summary as text and the full report as structured JSON. You can paste the log, point at a file, or let the server fetch it from Moonraker.
 
 ## Configuration
 
@@ -99,9 +99,9 @@ claude mcp add klipper-doctor -e MOONRAKER_URL=http://printer.local:7125 -- npx 
 
 The key and token are only ever sent as request headers. They are not logged, not returned by any tool and not written to disk. Redirects are not followed, so they cannot be forwarded to another host.
 
-## Safety: this server is read-only
+## Safety
 
-It never moves the printer, heats anything, starts, stops or pauses a print, runs G-code, restarts Klipper or writes a file on the printer. That is enforced in code, not by a promise:
+It never moves the printer, heats anything, starts, stops or pauses a print, runs G-code, restarts Klipper or writes a file on the printer. The code enforces this:
 
 - The Moonraker client has no way to send anything except `GET`, and only to a short list of documented read endpoints: `/server/files/klippy.log`, `/server/files/logs/klippy.log`, `/server/files/config/<file>`, `/printer/info` and `/printer/objects/query?print_stats&webhooks`. Any other path is refused before a request is made.
 - A test runs every tool against a local fake Moonraker that records each request, and fails on any method other than `GET` or any path outside that list. Another test tries the Moonraker write and control endpoints (G-code, print start and cancel, restart, emergency stop, file upload and delete) and checks none of them reach the network.
@@ -119,7 +119,7 @@ The other Klipper and Moonraker MCP servers control the printer and report its s
 - It reads `klippy.log` and `printer.cfg`. Moonraker's own log is not parsed.
 - It cannot see a failure that left no trace in the log.
 - With a raw `printer.cfg`, options in `[include]`d files are not checked. A `klippy.log` has the includes already merged, so prefer that.
-- Message wording differs between Klipper versions. When no rule matches, the engine says so instead of guessing.
+- Message wording differs between Klipper versions. When no rule matches, the engine says so.
 - Moonraker's `/server/files/klippy.log` is only there when Klipper writes its log where Moonraker can serve it. If it is missing, the server tries the `logs` root.
 
 ## Develop
@@ -134,7 +134,7 @@ npm run fixtures  # rebuild test/fixtures
 npm run assets    # refresh the README demo
 ```
 
-Rules live in [klipper-doctor](https://github.com/kd-011/klipper-doctor), not here. See [CONTRIBUTING.md](CONTRIBUTING.md).
+The rules live in [klipper-doctor](https://github.com/kd-011/klipper-doctor). See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
