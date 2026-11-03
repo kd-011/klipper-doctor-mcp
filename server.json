@@ -5,13 +5,13 @@
   "description": "Read-only Klipper diagnosis: explains why a print died and lints printer.cfg.",
   "repository": { "url": "https://github.com/kd-011/klipper-doctor-mcp", "source": "github" },
   "websiteUrl": "https://github.com/kd-011/klipper-doctor-mcp#readme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "klipper-doctor-mcp",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "runtimeHint": "npx",
       "transport": { "type": "stdio" },
       "environmentVariables": [

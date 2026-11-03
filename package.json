@@ -1,6 +1,6 @@
 {
   "name": "klipper-doctor-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A read-only MCP server that lets an AI agent diagnose a Klipper 3D printer: why a print died, and what is wrong with printer.cfg.",
   "keywords": [
     "mcp",
@@ -44,18 +44,20 @@
     "build": "tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
     "check": "tsc -p tsconfig.json --noEmit && node scripts/check-text.mjs && node scripts/render-demo.mjs --check",
     "fixtures": "node scripts/make-fixtures.mjs",
-    "assets": "node scripts/render-demo.mjs",
+    "assets": "node scripts/render-assets.mjs",
     "pretest": "npm run build",
     "test": "node --test test/*.test.mjs",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "demo": "node scripts/render-demo.mjs",
+    "record": "node scripts/record-session.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
-    "klipper-doctor": "github:kd-011/klipper-doctor",
+    "klipper-doctor": "^0.4.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^22.20.5",
-    "typescript": "^5.9.3"
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "client": "Claude Code",
+  "server": "0.2.0",
+  "fixture": "test/fixtures/heater-verify.log",
+  "prompt": "My print stopped halfway. The log is klippy.log in this folder. Why did it stop, and what should I try? Keep it short.",
+  "steps": [
+    {
+      "tool": "diagnose_log",
+      "input": {
+        "path": "klippy.log"
+      },
+      "result": "2 errors, 0 warnings, 2 notes (Klipper v0.12.0-250-g1a2b3c4d)"
+    }
+  ],
+  "answer": "**Why it stopped:** Klipper's `verify_heater` safety check shut the printer down (log lines 102–103) because the extruder wasn't heating at the expected rate. The heater wasn't delivering heat, or the thermistor wasn't reporting it.\n\n**What to try, in order:**\n1. Check the heater cartridge wiring and connectors at the toolhead and the board. Loose or heat-damaged connections are the usual cause.\n2. Check that the thermistor is seated in the heater block and that its reading is sensible at idle.\n3. Heat the extruder manually and watch whether the temperature climbs steadily.\n4. Check that the hotend fan or a draft isn't pulling too much heat away. Only loosen `verify_heater` settings as a last resort.\n\n**Unrelated config issues in the same log:**\n- `pid_integral_max = 0.2` in `[extruder]` (line 70) was removed from Klipper. Delete that line.\n- `stealthchop_threshold = 500` on stepper_x (line 87) is a minor note. Either remove it or set it to 999999."
+}

@@ -33,6 +33,7 @@ const reportMeta = z.object({
   sessions: z.number(),
   linesRead: z.number(),
   analysedSession: z.number(),
+  suppressed: z.number().optional(),
 });
 const counts = z.object({ error: z.number(), warning: z.number(), note: z.number() });
 const common = {
@@ -59,15 +60,18 @@ async function guard<T>(fn: () => Promise<T>): Promise<T | ReturnType<typeof fai
   }
 }
 
+const INSTRUCTIONS =
+  'Read-only Klipper diagnosis. When the user asks why a Klipper print stopped, failed, died or shut down, or asks what is wrong with their printer.cfg, call diagnose_log (or lint_config) before reading or grepping klippy.log or printer.cfg yourself: it applies rules that each cite the Klipper docs or source, and it also lints the config Klipper wrote into the log. Pass the file as path, or moonraker: true when MOONRAKER_URL is set. Nothing here moves, heats or writes to the printer.';
+
 export function createServer(ctx: Context): McpServer {
-  const server = new McpServer({ name: 'klipper-doctor-mcp', version: VERSION });
+  const server = new McpServer({ name: 'klipper-doctor-mcp', version: VERSION }, { instructions: INSTRUCTIONS });
 
   server.registerTool(
     'diagnose_log',
     {
       title: 'Diagnose a klippy.log',
       description:
-        'Read a Klipper klippy.log and explain why the print or session died, plus lint the printer.cfg that Klipper wrote into the log. Give exactly one of text, path or moonraker. Read-only: it never touches the printer.',
+        'Use when a Klipper print stopped, failed or shut down, or the printer shows an error. Reads a klippy.log and explains why the print or session died, plus lint the printer.cfg that Klipper wrote into the log. Give exactly one of text, path or moonraker. Read-only: it never touches the printer.',
       inputSchema: sourceShape,
       outputSchema: { ...common, report: z.object({ meta: reportMeta, crash: z.array(finding), config: z.array(finding) }) },
       annotations: READ_ONLY,
@@ -116,14 +120,14 @@ export function createServer(ctx: Context): McpServer {
       description: 'List every rule the klipper-doctor engine can fire, with its id, severity and one-line title. Use explain_rule for the full text.',
       inputSchema: { kind: z.enum(['crash', 'config']).optional().describe('Only rules of this report.') },
       outputSchema: {
-        rules: z.array(z.object({ id: z.string(), kind: z.enum(['crash', 'config']), severity: z.enum(['error', 'warning', 'note']), title: z.string(), docs: z.string() })),
+        rules: z.array(z.object({ id: z.string(), kind: z.enum(['crash', 'config']), severity: z.enum(['error', 'warning', 'note']), title: z.string(), suppressible: z.boolean(), docs: z.string() })),
       },
       annotations: READ_ONLY,
     },
     ({ kind }) => {
       const rules = rulesMetadata()
         .filter((r) => !kind || r.kind === kind)
-        .map((r) => ({ id: r.id, kind: r.kind, severity: r.severity, title: r.title, docs: r.docs }));
+        .map((r) => ({ id: r.id, kind: r.kind, severity: r.severity, title: r.title, suppressible: r.suppressible, docs: r.docs }));
       const lines = rules.map((r) => `- \`${r.id}\` (${r.kind}, ${r.severity}): ${r.title}`);
       return { content: [{ type: 'text' as const, text: lines.join('\n') }], structuredContent: { rules } };
     },
@@ -136,7 +140,7 @@ export function createServer(ctx: Context): McpServer {
       description: 'Explain one klipper-doctor rule by id: what it catches, the usual fix, and the Klipper docs page it comes from. Ids come from list_rules or from a finding.',
       inputSchema: { id: z.string().describe('A rule id such as heater-verify.') },
       outputSchema: {
-        rule: z.object({ id: z.string(), kind: z.enum(['crash', 'config']), severity: z.enum(['error', 'warning', 'note']), title: z.string(), detail: z.string(), fix: z.string(), docs: z.string() }),
+        rule: z.object({ id: z.string(), kind: z.enum(['crash', 'config']), severity: z.enum(['error', 'warning', 'note']), suppressible: z.boolean(), title: z.string(), detail: z.string(), fix: z.string(), docs: z.string() }),
       },
       annotations: READ_ONLY,
     },

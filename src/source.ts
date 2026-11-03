@@ -1,4 +1,5 @@
 import { readFile, realpath, stat } from 'node:fs/promises';
+import { homedir } from 'node:os';
 import { resolve, sep } from 'node:path';
 import { MoonrakerClient, MoonrakerError } from './moonraker.js';
 
@@ -37,7 +38,7 @@ export function moonrakerOrThrow(ctx: Context): MoonrakerClient {
 /** Load text from exactly one of: pasted text, a local path, or Moonraker. */
 export async function load(input: SourceInput, ctx: Context, what: 'klippy.log' | 'printer.cfg'): Promise<Loaded> {
   const given = [input.text !== undefined, input.path !== undefined, input.moonraker === true].filter(Boolean).length;
-  if (given !== 1) throw new InputError('Give exactly one of: text (the file contents), path (a file on this machine), or moonraker: true.');
+  if (given !== 1) throw new InputError('Give exactly one of: text (the file contents), path (a file on this machine, for example ~/printer_data/logs/klippy.log), or moonraker: true (needs MOONRAKER_URL).');
 
   if (input.text !== undefined) {
     if (input.text.length > MAX_BYTES) throw new InputError('text is too large.');
@@ -56,7 +57,7 @@ export async function load(input: SourceInput, ctx: Context, what: 'klippy.log' 
 }
 
 async function readLocal(path: string, ctx: Context): Promise<string> {
-  const abs = resolve(path);
+  const abs = resolve(path === '~' || path.startsWith('~/') ? homedir() + path.slice(1) : path);
   let real: string;
   try {
     real = await realpath(abs);

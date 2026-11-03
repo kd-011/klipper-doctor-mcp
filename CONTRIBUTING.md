@@ -24,7 +24,11 @@ npm run check
 npm test
 ```
 
-If the output of `diagnose_log` changes, run `npm run assets` and commit the refreshed README demo.
+If the output of `diagnose_log` changes, run `npm run demo` and commit the refreshed `docs/example.md`.
+
+## Release
+
+Releasing is a merge. Add a `## [x.y.z]` section to `CHANGELOG.md`, run `npm version <patch|minor|major> --no-git-tag-version`, set the two version fields in `server.json` to match (a test fails if they differ), and merge. `.github/workflows/publish.yml` publishes to npm and creates the GitHub Release when package.json has a version npm does not. Before the package has ever been published it needs an `NPM_TOKEN` secret, and without one it ends green with a notice and does nothing. After that it can use npm trusted publishing.
 
 ## AI-assisted contributions
 
