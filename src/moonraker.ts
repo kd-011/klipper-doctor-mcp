@@ -70,7 +70,6 @@ export class MoonrakerClient {
     return this.base.host;
   }
 
-  /** GET a read endpoint and return the body as text. */
   async getText(pathAndQuery: string): Promise<string> {
     const [path, query] = splitQuery(pathAndQuery);
     assertReadable(path, query);
@@ -141,7 +140,6 @@ export class MoonrakerClient {
     }
   }
 
-  /** A file from the config root, printer.cfg by default. */
   fetchConfig(file = 'printer.cfg'): Promise<string> {
     return this.getText(`/server/files/config/${encodeConfigPath(file)}`);
   }

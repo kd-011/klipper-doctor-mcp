@@ -23,7 +23,6 @@ export async function connect(env = {}) {
   return { client, close: () => client.close() };
 }
 
-/** Call a tool and return the whole result. */
 export const call = (client, name, args = {}) => client.callTool({ name, arguments: args });
 export const textOf = (result) => result.content.map((c) => c.text ?? '').join('\n');
 

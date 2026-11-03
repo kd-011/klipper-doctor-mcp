@@ -1,25 +1,20 @@
 # Publishes to npm and cuts the GitHub Release when a merge to main raises the version in package.json.
 #
-# To release: put a "## [x.y.z]" section in CHANGELOG.md, run `npm version <patch|minor|major> --no-git-tag-version`
-# (also change the two version fields in server.json), and merge the pull request. This workflow then compares
-# package.json's version with what npm has (scripts/release.mjs plan). If it is new, it runs the checks, publishes
-# with provenance, then creates the v<version> tag and a GitHub Release whose notes are that CHANGELOG section.
-# Re-running a failed run finishes whatever is left, so a failed release step does not need a new version.
+# To release: add a "## [x.y.z]" section to CHANGELOG.md, run `npm version <patch|minor|major> --no-git-tag-version`,
+# change the two version fields in server.json, and merge. Re-running a failed run finishes whatever is left, so a
+# failed release step does not need a new version.
 #
-# Before the package has ever been published, only an NPM_TOKEN secret can do the first publish. With no token the
-# plan step says so in a notice, the run ends green and nothing is published. Add the secret, then run this
-# workflow by hand (Actions > publish > Run workflow).
+# Only an NPM_TOKEN secret can do the first publish. With no token the plan step leaves a notice and the run ends
+# green with nothing published. Add the secret, then run this workflow by hand (Actions > publish > Run workflow).
 #
-# npm auth once the package exists, in this order, with no edit needed to switch:
-#   1. The repository secret NPM_TOKEN, when it exists: a granular token with publish rights on klipper-doctor-mcp
-#      and bypass 2FA on.
-#   2. Otherwise npm trusted publishing over OIDC. One-time setup on npmjs.com: the package's Settings >
-#      Trusted publisher > GitHub Actions, repository kd-011/klipper-doctor-mcp, workflow filename publish.yml.
-#      It needs npm 11.5.1 or later (installed below) and `id-token: write`.
+# Once the package exists, auth is whichever of these is available, in this order:
+#   1. The NPM_TOKEN secret: a granular token with publish rights on klipper-doctor-mcp and bypass 2FA on.
+#   2. npm trusted publishing over OIDC. Set it up once on npmjs.com under the package's Settings > Trusted publisher
+#      > GitHub Actions, repository kd-011/klipper-doctor-mcp, workflow filename publish.yml. Needs npm 11.5.1 or
+#      later (installed below) and `id-token: write`.
 # Provenance needs the repository to stay public.
 #
-# Tags and releases made with GITHUB_TOKEN do not start other workflow runs, and this workflow has no tag trigger,
-# so nothing publishes twice.
+# Tags and releases made with GITHUB_TOKEN start no other runs and there is no tag trigger, so nothing publishes twice.
 name: publish
 
 on:

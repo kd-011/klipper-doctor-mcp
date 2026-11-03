@@ -1,17 +1,14 @@
 #!/usr/bin/env node
-// Release logic for .github/workflows/publish.yml, kept in a script so it can be tested without a runner.
+// Release logic for .github/workflows/publish.yml, in a script so it can be tested without a runner.
 //
 //   node scripts/release.mjs plan [--version X] [--published a,b] [--release-exists true|false] [--has-token true|false]
 //   node scripts/release.mjs notes <version> [--changelog FILE]
 //
-// plan: compares package.json's version with what npm has, and says what is left to do. With no flags it asks
-//   the npm registry and GitHub (through the `gh` CLI), which is what the workflow does. With flags it asks
-//   nobody, so `--published 0.1.0,0.2.0 --release-exists false` is a dry run. It prints a JSON object, and when
-//   $GITHUB_OUTPUT is set it also writes version=, publish=, release= and skip= there.
-//   skip is true when the package has never been on npm and there is no NPM_TOKEN (only a token can make the
-//   first publish; trusted publishing needs the package to exist). The plan then exits 0 with nothing to do, so a
-//   merge to main leaves no red run. --has-token overrides looking at $NPM_TOKEN, which is never printed.
-// notes: prints the body of that version's CHANGELOG section, for the GitHub Release.
+// plan prints what is left to do as JSON, and writes version=, publish=, release= and skip= to $GITHUB_OUTPUT when
+// that is set. With no flags it asks npm and `gh`, as the workflow does. With flags it asks nobody, so
+// `--published 0.1.0,0.2.0 --release-exists false` is a dry run. skip means the package has never been on npm and
+// there is no NPM_TOKEN: only a token can make the first publish, and exiting 0 keeps a merge to main from going red.
+// notes prints the body of that version's CHANGELOG section.
 import { appendFileSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
@@ -32,13 +29,7 @@ export function compare(a, b) {
   return 0;
 }
 
-/**
- * What is left to do for `version`.
- * @param {string} version  from package.json
- * @param {string[]} published  every version npm has, pre-releases included
- * @param {boolean} releaseExists  whether the v<version> GitHub Release (and so the tag) exists
- * @param {boolean} hasToken  whether an NPM_TOKEN secret is available
- */
+// `published` is every version npm has, pre-releases included.
 export function planRelease(version, published, releaseExists, hasToken = true) {
   if (!STABLE.test(version)) {
     throw new Error(`version "${version}" is not x.y.z. Pre-release and build versions are not published by this workflow.`);

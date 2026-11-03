@@ -1,9 +1,8 @@
-// Records a real Claude Code session that uses this server, into assets/session.json.
-// It needs the `claude` CLI, signed in, and a built server (npm run build). Nothing is mocked: it runs
-// `claude -p` against dist/cli.js in a scratch directory that holds only a copy of test/fixtures/heater-verify.log
-// as klippy.log, with user settings turned off so none of the recorder's own configuration leaks in.
-// The scratch directory's path is cut from the recorded tool input. Everything else is kept as it came back.
-// Usage: node scripts/record-session.mjs        then: node scripts/render-assets.mjs
+// Records a Claude Code session against this server into assets/session.json. Needs a signed-in `claude` CLI and
+// a built server (npm run build). Runs `claude -p` on dist/cli.js in a scratch directory holding only a copy of
+// test/fixtures/heater-verify.log as klippy.log, with user settings off so local config stays out of the recording.
+// The scratch path is cut from the tool input and the rest is kept as it came back.
+// Usage: node scripts/record-session.mjs, then node scripts/render-assets.mjs
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, mkdtempSync, rmSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -21,7 +20,6 @@ try {
   const run = spawnSync('claude', args, { cwd: dir, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   if (run.status !== 0) throw new Error(`claude exited ${run.status}: ${run.stderr}`);
   const events = run.stdout.trim().split('\n').map((l) => JSON.parse(l));
-  const init = events.find((e) => e.type === 'system' && e.subtype === 'init');
   const steps = [];
   const results = new Map();
   let answer = '';
@@ -41,9 +39,7 @@ try {
     delete s.id;
   }
   const out = {
-    recorded: new Date().toISOString().slice(0, 10),
-    client: `Claude Code ${spawnSync('claude', ['--version'], { encoding: 'utf8' }).stdout.trim()}`,
-    model: init?.model ?? 'unknown',
+    client: 'Claude Code',
     server: JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version,
     fixture: 'test/fixtures/heater-verify.log',
     prompt: PROMPT,
