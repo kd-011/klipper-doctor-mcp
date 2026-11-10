@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
-    "klipper-doctor": "^0.4.0",
+    "klipper-doctor": "^0.5.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {

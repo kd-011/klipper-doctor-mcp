@@ -16,7 +16,7 @@ The text below is the output of this server on `test/fixtures/heater-verify.log`
 - **[tmc2209 stepper_x] has stealthchop_threshold 500** (config, line 87): [tmc2209 stepper_x] sets stealthchop_threshold to 500, so the driver is in stealthChop below 500 mm/s and spreadCycle above it. Fix: Remove stealthchop_threshold from [tmc2209 stepper_x] or set it to 999999.
 - **No [input_shaper] section** (config): Input shaping is optional. Fix: See Resonance Compensation if you see ringing on prints.
 
-Checked with [klipper-doctor](https://github.com/kd-011/klipper-doctor) 0.4.0
+Checked with [klipper-doctor](https://github.com/kd-011/klipper-doctor) 0.5.0
 
 Rule ids: heater-verify, removed-option, tmc-stealthchop-threshold, no-input-shaper (explain_rule gives the full text).
 ```
