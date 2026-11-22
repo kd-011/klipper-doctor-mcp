@@ -1,0 +1,2107 @@
+{
+  "version": 1,
+  "docs": {
+    "klipper-doctor-mcp-agents": {
+      "claims": {
+        "c9cf521b2ac1": {
+          "text": "Install: `npm ci`. It also builds, because `prepare` runs the build.",
+          "line": 15,
+          "specs": [
+            "package.json#scripts.prepare"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.prepare": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.prepare",
+                "hash": "03f011861f607ce54ae32d12e830cb5bc7dcbef8",
+                "value": "\"npm run build\""
+              }
+            }
+          }
+        },
+        "fe9b4bd42a48": {
+          "text": "Build: `npm run build` (tsc to `dist/`, then marks `dist/cli.js` executable).",
+          "line": 16,
+          "specs": [
+            "package.json#scripts.build"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.build": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.build",
+                "hash": "bf85f736b4d0ce1dd1c6904485e9eea36d2b8267",
+                "value": "\"tsc -p tsconfig.json && node -e \\\"require('fs').chmodSync('dist/cli.js', 0o755)\\\"\""
+              }
+            }
+          }
+        },
+        "7ca20d2c3966": {
+          "text": "Test: `npm test`. `pretest` builds first, then Node's built-in runner runs `test/*.test.mjs`.",
+          "line": 17,
+          "specs": [
+            "package.json#scripts.test",
+            "package.json#scripts.pretest"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.test": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.test",
+                "hash": "718d1ec627682e885f999d73ced06047bf3f48b3",
+                "value": "\"node --test test/*.test.mjs\""
+              }
+            },
+            "package.json#scripts.pretest": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.pretest",
+                "hash": "03f011861f607ce54ae32d12e830cb5bc7dcbef8",
+                "value": "\"npm run build\""
+              }
+            }
+          }
+        },
+        "39c0a37204ae": {
+          "text": "Check before a PR: `npm run check` (typecheck with no emit, the em dash scan, and a check that `docs/example.md` is current). CI runs `npm ci`, `npm run chec...",
+          "line": 18,
+          "specs": [
+            "package.json#scripts.check",
+            ".github/workflows/ci.yml"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.check": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.check",
+                "hash": "c3d314ba9758bb2366f2ab66a96e26bffa214bb4",
+                "value": "\"tsc -p tsconfig.json --noEmit && node scripts/check-text.mjs && node scripts/render-demo.mjs --check\""
+              }
+            },
+            ".github/workflows/ci.yml": {
+              "path": ".github/workflows/ci.yml",
+              "blob": "7ef9e3dd94926f08267b1a73e387c797ca8c8707",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "90cbe2f46211": {
+          "text": "Refresh the demo block in `docs/example.md`: `npm run demo`.",
+          "line": 19,
+          "specs": [
+            "package.json#scripts.demo",
+            "scripts/render-demo.mjs"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.demo": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.demo",
+                "hash": "a67337eaca28a249a07966eb34cbe6e193ed2c49",
+                "value": "\"node scripts/render-demo.mjs\""
+              }
+            },
+            "scripts/render-demo.mjs": {
+              "path": "scripts/render-demo.mjs",
+              "blob": "ed81cf2dfd65e5addfbc313f7c7f316a38e763b7",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "907504780ff7": {
+          "text": "Rebuild fixtures: `npm run fixtures`.",
+          "line": 20,
+          "specs": [
+            "package.json#scripts.fixtures",
+            "scripts/make-fixtures.mjs:1-5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.fixtures": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.fixtures",
+                "hash": "34be6ff257aa2f3c2f2b7bb5bdfc671b780f64aa",
+                "value": "\"node scripts/make-fixtures.mjs\""
+              }
+            },
+            "scripts/make-fixtures.mjs": {
+              "path": "scripts/make-fixtures.mjs",
+              "blob": "da9841637edc41bdbca693b79ade5ea089657d4e",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "034c1886820d3c14a33f00d2596dd0a5a1a5dedc"
+              }
+            }
+          }
+        },
+        "1b4e482746b0": {
+          "text": "Redraw the README pictures from `assets/session.json`: `npm run assets` (needs a headless Chromium). Re-record the session with `npm run record` (needs a sig...",
+          "line": 21,
+          "specs": [
+            "package.json#scripts.assets",
+            "package.json#scripts.record",
+            "scripts/render-assets.mjs:1-5",
+            "scripts/record-session.mjs:1-5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts.assets": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.assets",
+                "hash": "a297a1377f9491cc0313eb641cd6cce92b6b98c6",
+                "value": "\"node scripts/render-assets.mjs\""
+              }
+            },
+            "package.json#scripts.record": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.record",
+                "hash": "d8390e62eef1c599cce11a8028348e5018dea036",
+                "value": "\"node scripts/record-session.mjs\""
+              }
+            },
+            "scripts/render-assets.mjs": {
+              "path": "scripts/render-assets.mjs",
+              "blob": "9ac0f4b6876a58981c3d016aba07465ece8d9418",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "9686842f92bf187cb1de337d92b01acc9d0aabde"
+              }
+            },
+            "scripts/record-session.mjs": {
+              "path": "scripts/record-session.mjs",
+              "blob": "557dc1cb2ce82b1f4d1658f9e1ab1ff009349252",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "d124b47b4749fa5d4dca35b037862da0645f7a78"
+              }
+            }
+          }
+        },
+        "fa563fda575b": {
+          "text": "Run the server by hand: `node dist/cli.js` speaks MCP over stdio, so start it from an MCP client. `--help` and `--version` print and exit.",
+          "line": 22,
+          "specs": [
+            "src/cli.ts:8-41"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 8,
+                "end": 41,
+                "hash": "f8126beaadb4a6fb923304d2af88d35d96fc5288"
+              }
+            }
+          }
+        },
+        "abd58d6a17ca": {
+          "text": "Needs Node 18 or newer.",
+          "line": 23,
+          "specs": [
+            "package.json#engines.node"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#engines.node": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "engines.node",
+                "hash": "8b1eef9db8111943994ac9ef00463b0def9526f3",
+                "value": "\">=18\""
+              }
+            }
+          }
+        },
+        "d04371999ac8": {
+          "text": "No lint or format command exists.",
+          "line": 24,
+          "specs": [
+            "package.json#scripts"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#scripts": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts",
+                "hash": "81acae6fb61f52595157ebcbcb7028e56833a805",
+                "value": "{\"assets\":\"node scripts/render-assets.mjs\",\"build\":\"tsc -p tsconfig.json && node -e \\\"require('fs').chmodSync('dist/c..."
+              }
+            }
+          }
+        },
+        "f9a7f0fdc0cb": {
+          "text": "TypeScript source in `src/`, ES modules on NodeNext, strict mode with `noUncheckedIndexedAccess`; tests are plain `.mjs` files that spawn the built `dist/cli...",
+          "line": 28,
+          "specs": [
+            "tsconfig.json",
+            "test/helpers.mjs:13-24"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "tsconfig.json": {
+              "path": "tsconfig.json",
+              "blob": "a727fd5fb2cb713fc3cb3a01dfd01623f6ba83b2",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f"
+            },
+            "test/helpers.mjs": {
+              "path": "test/helpers.mjs",
+              "blob": "625a11f01009e5e063ce5478640fd37156cf3e52",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 13,
+                "end": 24,
+                "hash": "887b1082f145a59d2e89abd4ded666e107012c23"
+              }
+            }
+          }
+        },
+        "1c4500aaf07d": {
+          "text": "The server stays read-only. No tool may move the printer, heat anything, start, stop or pause a print, run G-code, restart Klipper or write a file on the pri...",
+          "line": 29,
+          "specs": [
+            "CONTRIBUTING.md:12"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 12,
+                "end": 12,
+                "hash": "49a7f5cd1926971de94dc2281f2ca6ee3da1f947"
+              }
+            }
+          }
+        },
+        "41698e889849": {
+          "text": "A new Moonraker endpoint goes in `READ_ONLY_PATHS` with a link to the Moonraker docs, and the PR says why it only reads.",
+          "line": 30,
+          "specs": [
+            "src/moonraker.ts:9-16",
+            "CONTRIBUTING.md:12"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 9,
+                "end": 16,
+                "hash": "fcb92189073616d272121981bb9e21e9a3d294b0"
+              }
+            },
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 12,
+                "end": 12,
+                "hash": "49a7f5cd1926971de94dc2281f2ca6ee3da1f947"
+              }
+            }
+          }
+        },
+        "cc923e92c9d3": {
+          "text": "Never log or return the Moonraker key or token.",
+          "line": 31,
+          "specs": [
+            "CONTRIBUTING.md:13"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 13,
+                "end": 13,
+                "hash": "8af4519f3956b14b0ff8b9b6e50b3c745250f3eb"
+              }
+            }
+          }
+        },
+        "44a3a004d453": {
+          "text": "Add a tool only if the engine or Moonraker really does the thing. No generic printer control.",
+          "line": 32,
+          "specs": [
+            "CONTRIBUTING.md:14"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 14,
+                "end": 14,
+                "hash": "85ad0c1f56458e08b3a28d589d33a448196f1679"
+              }
+            }
+          }
+        },
+        "371732d30baa": {
+          "text": "Dependencies stay at the MCP SDK, klipper-doctor and zod.",
+          "line": 33,
+          "specs": [
+            "CONTRIBUTING.md:15",
+            "package.json#dependencies"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 15,
+                "end": 15,
+                "hash": "cec15aa1a9413977107921cb8d3c1edd4ced026f"
+              }
+            },
+            "package.json#dependencies": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "dependencies",
+                "hash": "da3b8e24cb48985fab0e89ecdd996ecf13829f9b",
+                "value": "{\"@modelcontextprotocol/sdk\":\"^1.32.2\",\"klipper-doctor\":\"^0.5.0\",\"zod\":\"^4.6.7\"}"
+              }
+            }
+          }
+        },
+        "0022e50253c0": {
+          "text": "This repo adds no rules. A wrong diagnosis or missing rule is a klipper-doctor change.",
+          "line": 34,
+          "specs": [
+            "CONTRIBUTING.md:7",
+            "src/server.ts:3"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 7,
+                "end": 7,
+                "hash": "ae06a380705698f7841599eb5de9eb2709dc46ec"
+              }
+            },
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 3,
+                "end": 3,
+                "hash": "c80e747f0b966eaa64410795402dcbb2e82afed9"
+              }
+            }
+          }
+        },
+        "15699de2d3f1": {
+          "text": "Fixtures are synthetic: build them in `scripts/make-fixtures.mjs` from Klipper source message formats and never commit a real person's log or config.",
+          "line": 35,
+          "specs": [
+            "CONTRIBUTING.md:16",
+            "scripts/make-fixtures.mjs:1-5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 16,
+                "end": 16,
+                "hash": "8a19b627986c3ac452ae9c1ed132ea8c47895bb3"
+              }
+            },
+            "scripts/make-fixtures.mjs": {
+              "path": "scripts/make-fixtures.mjs",
+              "blob": "da9841637edc41bdbca693b79ade5ea089657d4e",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "034c1886820d3c14a33f00d2596dd0a5a1a5dedc"
+              }
+            }
+          }
+        },
+        "362c2bf3085f": {
+          "text": "Prose is plain English with no em dashes and no marketing words.",
+          "line": 36,
+          "specs": [
+            "CONTRIBUTING.md:17",
+            "scripts/check-text.mjs:1-2"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 17,
+                "end": 17,
+                "hash": "67257155be73301217be203a730aa46457a0f613"
+              }
+            },
+            "scripts/check-text.mjs": {
+              "path": "scripts/check-text.mjs",
+              "blob": "518a99820365d82c80c152100a31ff6f74c46b2d",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 1,
+                "end": 2,
+                "hash": "3e2b818f10d720b8f0743d31bf32826a5c1715cf"
+              }
+            }
+          }
+        },
+        "4c5afaa912e1": {
+          "text": "A release is a merge: add a `## [x.y.z]` section to `CHANGELOG.md`, run `npm version <patch|minor|major> --no-git-tag-version`, set both version fields in `s...",
+          "line": 37,
+          "specs": [
+            "CONTRIBUTING.md:31",
+            ".github/workflows/publish.yml:1-5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 31,
+                "end": 31,
+                "hash": "69f7225903b450fca277a79dd0aeb86d957133f7"
+              }
+            },
+            ".github/workflows/publish.yml": {
+              "path": ".github/workflows/publish.yml",
+              "blob": "6899262b60f5a54147b32e9de8b4115363ccc63b",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "1665311f97f2ae2de64dc20e9014241f6de3969f"
+              }
+            }
+          }
+        },
+        "7c7996a275b2": {
+          "text": "Name any AI tool that wrote or edited part of a PR in its description, and keep PRs to one logical change.",
+          "line": 38,
+          "specs": [
+            "CONTRIBUTING.md:37-39"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 37,
+                "end": 39,
+                "hash": "fb5f6f29d56f7c3083e72f6a5beec9514ea7feb9"
+              }
+            }
+          }
+        },
+        "02b8c4faeb6f": {
+          "text": "stdout is the MCP protocol channel. Anything the server prints for humans goes to stderr, and never includes the key or token.",
+          "line": 42,
+          "specs": [
+            "src/cli.ts:39-40"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 39,
+                "end": 40,
+                "hash": "8e79dae564ada550655d32de8aec5f73fb2cb191"
+              }
+            }
+          }
+        },
+        "1bd0a508f86f": {
+          "text": "`npm test` spawns `dist/cli.js`, so a test run against stale `dist/` tests old code. `npm test` rebuilds through `pretest`; `node --test` on its own does not.",
+          "line": 43,
+          "specs": [
+            "test/helpers.mjs:14-19",
+            "package.json#scripts.pretest"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/helpers.mjs": {
+              "path": "test/helpers.mjs",
+              "blob": "625a11f01009e5e063ce5478640fd37156cf3e52",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 14,
+                "end": 19,
+                "hash": "da592c9c0eb6bf4296e3de89b7191e41bbecf8ae"
+              }
+            },
+            "package.json#scripts.pretest": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "scripts.pretest",
+                "hash": "03f011861f607ce54ae32d12e830cb5bc7dcbef8",
+                "value": "\"npm run build\""
+              }
+            }
+          }
+        },
+        "1d8feacae77c": {
+          "text": "`scripts/check-text.mjs` fails `npm run check` on an em dash in any tracked or untracked text file, docs included.",
+          "line": 44,
+          "specs": [
+            "scripts/check-text.mjs:6-20"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "scripts/check-text.mjs": {
+              "path": "scripts/check-text.mjs",
+              "blob": "518a99820365d82c80c152100a31ff6f74c46b2d",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 6,
+                "end": 20,
+                "hash": "77f863b0c28f75270728235d29bf2253bd895900"
+              }
+            }
+          }
+        },
+        "38d3663ef97a": {
+          "text": "`docs/example.md` between the `demo:start` and `demo:end` markers is generated. A test fails when it differs from the server's real output, which changes whe...",
+          "line": 45,
+          "specs": [
+            "test/readme.test.mjs:10-15",
+            "scripts/render-demo.mjs:19-35"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/readme.test.mjs": {
+              "path": "test/readme.test.mjs",
+              "blob": "5ef31a71093a55e9eeca6c0d4a6a28ee7aeb8675",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 10,
+                "end": 15,
+                "hash": "f4911987e61a781ab43efcf709ec736213c18545"
+              }
+            },
+            "scripts/render-demo.mjs": {
+              "path": "scripts/render-demo.mjs",
+              "blob": "ed81cf2dfd65e5addfbc313f7c7f316a38e763b7",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 19,
+                "end": 35,
+                "hash": "a9db87c2059e5aa49ee55743dbc1a405dd1e1dcc"
+              }
+            }
+          }
+        },
+        "2ab09558afe8": {
+          "text": "`assets/session.json` is checked against what the server returns on `test/fixtures/heater-verify.log`; when it drifts, run `npm run record` then `npm run ass...",
+          "line": 46,
+          "specs": [
+            "test/readme.test.mjs:17-30"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/readme.test.mjs": {
+              "path": "test/readme.test.mjs",
+              "blob": "5ef31a71093a55e9eeca6c0d4a6a28ee7aeb8675",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 17,
+                "end": 30,
+                "hash": "3ac53b8a5eb9e13ec8bf70d7e2e849d8fc770947"
+              }
+            }
+          }
+        },
+        "2fb09849e1c5": {
+          "text": "`README.md` must name every registered tool in backticks, state the read-only rule and carry the log privacy warning, or a test fails.",
+          "line": 47,
+          "specs": [
+            "test/readme.test.mjs:37-50"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/readme.test.mjs": {
+              "path": "test/readme.test.mjs",
+              "blob": "5ef31a71093a55e9eeca6c0d4a6a28ee7aeb8675",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 37,
+                "end": 50,
+                "hash": "b010a0050cdf6650fa1e35a78d6a6c4a98ccba43"
+              }
+            }
+          }
+        },
+        "56a068aa97ed": {
+          "text": "`package.json` and `server.json` versions must match, `server.json` name must equal `mcpName`, and `CHANGELOG.md` needs a section for the current version.",
+          "line": 48,
+          "specs": [
+            "test/stranger.test.mjs:77-89"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/stranger.test.mjs": {
+              "path": "test/stranger.test.mjs",
+              "blob": "7611376928051ad9a4ac27e28340db4fb57d040d",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 77,
+                "end": 89,
+                "hash": "5e9d577c92379afa213e0493e8451d4662600f40"
+              }
+            }
+          }
+        },
+        "d6beafb07018": {
+          "text": "Dependencies must be plain semver ranges (no git or file dependency), and `klipper-doctor` must be a `^0.x.y` range resolved from the npm registry in the loc...",
+          "line": 49,
+          "specs": [
+            "test/stranger.test.mjs:64-75"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/stranger.test.mjs": {
+              "path": "test/stranger.test.mjs",
+              "blob": "7611376928051ad9a4ac27e28340db4fb57d040d",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 64,
+                "end": 75,
+                "hash": "7ebed3bbd5d560c9106c93d11db749fba33b7ca4"
+              }
+            }
+          }
+        },
+        "50b2bfd05408": {
+          "text": "A merge to main that changes `package.json` triggers `publish.yml`. It publishes only when the version is above everything on npm and a token or trusted publ...",
+          "line": 50,
+          "specs": [
+            ".github/workflows/publish.yml:7-8",
+            "scripts/release.mjs:1-12"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            ".github/workflows/publish.yml": {
+              "path": ".github/workflows/publish.yml",
+              "blob": "6899262b60f5a54147b32e9de8b4115363ccc63b",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 7,
+                "end": 8,
+                "hash": "ec93325d6bdc17f4c4928874e3fb5aef5ea92e50"
+              }
+            },
+            "scripts/release.mjs": {
+              "path": "scripts/release.mjs",
+              "blob": "b2ad9dc70a17342816667699ec66741f127c85f0",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 12,
+                "hash": "e4472ca617f4b369ec48b71691a5208469fdc32b"
+              }
+            }
+          }
+        },
+        "99a34acccfa0": {
+          "text": "`KLIPPER_DOCTOR_ALLOWED_DIRS` set to directories that all fail to resolve allows nothing, not everything.",
+          "line": 51,
+          "specs": [
+            "src/source.ts:81-94"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 81,
+                "end": 94,
+                "hash": "43e00cf63d1bbfb81cf0ef7efc2da35886e0f15c"
+              }
+            }
+          }
+        },
+        "1a96262706bd": {
+          "text": "The allowed-dirs check runs on the real path after symlinks are followed, and after `~` expands to the home of the user running the server.",
+          "line": 52,
+          "specs": [
+            "src/source.ts:59-69"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 59,
+                "end": 69,
+                "hash": "4f9308d3996e24c4be25e166a4fc96bbe99f0dec"
+              }
+            }
+          }
+        },
+        "4e2d66f14e67": {
+          "text": "The Moonraker client refuses redirects so the key and token cannot be forwarded to another host.",
+          "line": 53,
+          "specs": [
+            "src/moonraker.ts:97-102"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 97,
+                "end": 102,
+                "hash": "5adf9060ac594b9c7833eac33d6bf26046e3aa99"
+              }
+            }
+          }
+        },
+        "fba9c1c81ad1": {
+          "text": "The download timeout is per wait (headers, then each gap between body chunks), not for the whole download, so a large log on a slow link can finish.",
+          "line": 54,
+          "specs": [
+            "src/moonraker.ts:80-92"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 80,
+                "end": 92,
+                "hash": "51c28d85ac9e9f7a2200e9f3265f76e2b5e884f2"
+              }
+            }
+          }
+        },
+        "d44e211a669e": {
+          "text": "The `INSTRUCTIONS` string and the `diagnose_log` description are tested for the words an agent needs to call it before reading `klippy.log` itself. Rewording...",
+          "line": 55,
+          "specs": [
+            "src/server.ts:63-74",
+            "test/stranger.test.mjs:93-111"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 63,
+                "end": 74,
+                "hash": "59cbe23b907ee2272e162020366db16e0b4a5aec"
+              }
+            },
+            "test/stranger.test.mjs": {
+              "path": "test/stranger.test.mjs",
+              "blob": "7611376928051ad9a4ac27e28340db4fb57d040d",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 93,
+                "end": 111,
+                "hash": "cace950e3f2df3e8588d0139eb05977537d160b4"
+              }
+            }
+          }
+        },
+        "531635fae459": {
+          "text": "Whether Claude Desktop and Cursor can run the server: the docs say only Claude Code has been run.",
+          "line": 59,
+          "specs": [
+            "docs/clients.md:5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "docs/clients.md": {
+              "path": "docs/clients.md",
+              "blob": "260dd0996620ae76d298768a0b0f23bcc3d05a53",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 5,
+                "end": 5,
+                "hash": "1028951d38b28bf0c11eefd2910c640cf1bec776"
+              }
+            }
+          }
+        }
+      },
+      "pinnedAt": "2026-11-22T09:20:56.506Z",
+      "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3"
+    },
+    "klipper-doctor-mcp-architecture": {
+      "claims": {
+        "97bc6c79f5ab": {
+          "text": "A single Node process written in TypeScript. An MCP client starts it and talks to it over stdio. It registers five read-only tools, turns the caller's input ...",
+          "line": 11,
+          "specs": [
+            "src/cli.ts",
+            "src/server.ts:66-180",
+            "package.json#dependencies"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f"
+            },
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 66,
+                "end": 180,
+                "hash": "c81f5754fe8b7f918647c75a9691c6b2a73e7479"
+              }
+            },
+            "package.json#dependencies": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "dependencies",
+                "hash": "da3b8e24cb48985fab0e89ecdd996ecf13829f9b",
+                "value": "{\"@modelcontextprotocol/sdk\":\"^1.32.2\",\"klipper-doctor\":\"^0.5.0\",\"zod\":\"^4.6.7\"}"
+              }
+            }
+          }
+        },
+        "7be986b0db62": {
+          "text": "`src/cli.ts` is the `klipper-doctor-mcp` binary. It handles `--help` and `--version`, reads the environment into a `Context`, and connects the server to a st...",
+          "line": 26,
+          "specs": [
+            "src/cli.ts:23-41",
+            "package.json#bin"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 23,
+                "end": 41,
+                "hash": "d25e9401adb4d801c71d2e00443b9ab87b93386d"
+              }
+            },
+            "package.json#bin": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "bin",
+                "hash": "8c1d5e7080e05d4c980315a9d64b13c274e8d43b",
+                "value": "{\"klipper-doctor-mcp\":\"dist/cli.js\"}"
+              }
+            }
+          }
+        },
+        "93f0aa18e762": {
+          "text": "`src/server.ts` registers `diagnose_log`, `lint_config`, `list_rules`, `explain_rule` and `printer_status`, each with `readOnlyHint` and a zod output schema....",
+          "line": 27,
+          "specs": [
+            "src/server.ts:12-180"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 12,
+                "end": 180,
+                "hash": "73217339ffe914a5a79111018f435dcfadd677b1"
+              }
+            }
+          }
+        },
+        "b18347fbf211": {
+          "text": "`src/source.ts` turns the input into text: exactly one of pasted `text`, a local `path`, or `moonraker: true`. It applies the allowed-directories fence and a...",
+          "line": 28,
+          "specs": [
+            "src/source.ts:9-79"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 9,
+                "end": 79,
+                "hash": "976e6ed8c5f3df18c42c24e970c9867183a0412a"
+              }
+            }
+          }
+        },
+        "3f9a70f2e3df": {
+          "text": "`src/moonraker.ts` is the only code that touches the network: a client that can send `GET` to a short list of read paths, with header auth, a redirect ban, a...",
+          "line": 29,
+          "specs": [
+            "src/moonraker.ts:1-16",
+            "src/moonraker.ts:73-122"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 16,
+                "hash": "afcb0ff5d0ec50bdf5a65689283000aaf84a0d83"
+              }
+            },
+            "src/moonraker.ts:73-122": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 73,
+                "end": 122,
+                "hash": "fd57e76c0e4db6ff2c59ad591e7f39af769f8549"
+              }
+            }
+          }
+        },
+        "22605aa6a0f6": {
+          "text": "`src/index.ts` is the package entry (`main`): it re-exports `createServer`, `VERSION`, the Moonraker client and error, and `READ_ONLY_PATHS`.",
+          "line": 30,
+          "specs": [
+            "src/index.ts",
+            "package.json#main"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/index.ts": {
+              "path": "src/index.ts",
+              "blob": "d5a507c32b352cac6796630e38f066d0c58629f5",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f"
+            },
+            "package.json#main": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "main",
+                "hash": "500912a378c5550923e686a9715eacbeb7bc8d10",
+                "value": "\"./dist/index.js\""
+              }
+            }
+          }
+        },
+        "c9431043b077": {
+          "text": "The analysis is the `klipper-doctor` npm package: `analyze`, `verdict`, `countBySeverity`, `toMarkdown` and `rulesMetadata`. This repo adds no rules.",
+          "line": 31,
+          "specs": [
+            "src/server.ts:3",
+            "package.json#dependencies.klipper-doctor"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 3,
+                "end": 3,
+                "hash": "c80e747f0b966eaa64410795402dcbb2e82afed9"
+              }
+            },
+            "package.json#dependencies.klipper-doctor": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "dependencies.klipper-doctor",
+                "hash": "828737eee2841a8df3ed0410f8c1fa3f50bdfcc8",
+                "value": "\"^0.5.0\""
+              }
+            }
+          }
+        },
+        "c5b149babb22": {
+          "text": "`scripts/` holds repo tooling, none of it shipped: fixtures, the demo block, the recorded-session pictures and the release planner. `package.json#files` ship...",
+          "line": 32,
+          "specs": [
+            "package.json#files",
+            "scripts/release.mjs:1-12"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#files": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "files",
+                "hash": "66c6876eb194ff9d9b84b171de5e8568f9511058",
+                "value": "[\"dist\",\"server.json\",\"README.md\",\"LICENSE\"]"
+              }
+            },
+            "scripts/release.mjs": {
+              "path": "scripts/release.mjs",
+              "blob": "b2ad9dc70a17342816667699ec66741f127c85f0",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 12,
+                "hash": "e4472ca617f4b369ec48b71691a5208469fdc32b"
+              }
+            }
+          }
+        },
+        "0fada374cc9e": {
+          "text": "`test/` runs the built binary over stdio with an SDK client, against synthetic fixtures and a fake Moonraker HTTP server that records every request.",
+          "line": 33,
+          "specs": [
+            "test/helpers.mjs:13-60"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "test/helpers.mjs": {
+              "path": "test/helpers.mjs",
+              "blob": "625a11f01009e5e063ce5478640fd37156cf3e52",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 13,
+                "end": 60,
+                "hash": "bec7c1e61bb4295a8c1490189f1666e5d5a9e234"
+              }
+            }
+          }
+        },
+        "f89356732e5d": {
+          "text": "A tool call arrives over stdio and reaches the handler in `src/server.ts`.",
+          "line": 37,
+          "specs": [
+            "src/server.ts:79-87"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 79,
+                "end": 87,
+                "hash": "2c3788a63ed5626c19b78e07170cdecf02f1bd48"
+              }
+            }
+          }
+        },
+        "0034a0b1f93c": {
+          "text": "`load` checks that exactly one source was given. Pasted text is used as is. A path is expanded (`~`), resolved through `realpath`, checked against the allowe...",
+          "line": 38,
+          "specs": [
+            "src/source.ts:39-79"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 39,
+                "end": 79,
+                "hash": "02de7d44bd3f8961456a303f15be2388e37044b3"
+              }
+            }
+          }
+        },
+        "51404a2177cd": {
+          "text": "With `moonraker: true`, `load` asks the client for `klippy.log` (top-level endpoint first, the `logs` root on a 404) or for a config file under `/server/file...",
+          "line": 39,
+          "specs": [
+            "src/source.ts:49-56",
+            "src/moonraker.ts:133-145"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 49,
+                "end": 56,
+                "hash": "7482c85cac233a3c2dff6e7afe8e3a8f1714b1ed"
+              }
+            },
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 133,
+                "end": 145,
+                "hash": "0d422b76469ee7dd2b4c1f2c670a4782ce3f531a"
+              }
+            }
+          }
+        },
+        "9eea2b70ad4e": {
+          "text": "The text goes to `analyze` from klipper-doctor, with the filename `klippy.log` or `printer.cfg`. `lint_config` keeps only the config findings.",
+          "line": 40,
+          "specs": [
+            "src/server.ts:81-82",
+            "src/server.ts:105-108"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 81,
+                "end": 82,
+                "hash": "5aa4279df27dd92cea80a98c1842aa14cb0bfb6f"
+              }
+            },
+            "src/server.ts:105-108": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 105,
+                "end": 108,
+                "hash": "2d6f322ad1ea29eff2bf26d56c9eb728d4d4c606"
+              }
+            }
+          }
+        },
+        "d6b351c40e67": {
+          "text": "The reply is the engine's Markdown plus a line of rule ids, and the full report as structured content.",
+          "line": 41,
+          "specs": [
+            "src/server.ts:45-49",
+            "src/server.ts:83-86"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 45,
+                "end": 49,
+                "hash": "7053e858840cda207449d1e8f6b18a72a450081b"
+              }
+            },
+            "src/server.ts:83-86": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 83,
+                "end": 86,
+                "hash": "c4dc33b0c7900431a6a61b1d728770d0fe1b01b6"
+              }
+            }
+          }
+        },
+        "27f8090512cc": {
+          "text": "`printer_status` makes two `GET`s to Moonraker (`/printer/info`, then `/printer/objects/query?print_stats&webhooks`). If the second fails it still answers, w...",
+          "line": 42,
+          "specs": [
+            "src/moonraker.ts:147-166"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 147,
+                "end": 166,
+                "hash": "e5bb484b075971da4dadc5a66784ac4b92da6c05"
+              }
+            }
+          }
+        },
+        "04bcfc43c133": {
+          "text": "`list_rules` and `explain_rule` read `rulesMetadata()` from the engine and touch no input or network.",
+          "line": 43,
+          "specs": [
+            "src/server.ts:127-152"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 127,
+                "end": 152,
+                "hash": "d132eb28dfb998a915f5ed91a3588f94623895ba"
+              }
+            }
+          }
+        },
+        "277d73a03658": {
+          "text": "None. Input is read, analysed and returned; the server writes no file and keeps no state between calls.",
+          "line": 47,
+          "specs": [
+            "src/source.ts:59-79",
+            "src/server.ts:51-61"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 59,
+                "end": 79,
+                "hash": "f020ef262409fdecf0d79905bf6eda5d034058c8"
+              }
+            },
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 51,
+                "end": 61,
+                "hash": "b31ac129484185e4acf3811c52c24f1d815a1d3f"
+              }
+            }
+          }
+        },
+        "06dfb0ddd997": {
+          "text": "The server has no login of its own: access is whatever the MCP client that launched it over stdio has.",
+          "line": 51,
+          "specs": [
+            "src/cli.ts:23-41"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 23,
+                "end": 41,
+                "hash": "d25e9401adb4d801c71d2e00443b9ab87b93386d"
+              }
+            }
+          }
+        },
+        "f9731530ec81": {
+          "text": "Local file access is open to any file the process can read, unless `KLIPPER_DOCTOR_ALLOWED_DIRS` is set. Then a path must resolve, after symlinks, inside one...",
+          "line": 52,
+          "specs": [
+            "src/source.ts:64-69",
+            "src/source.ts:81-94"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 64,
+                "end": 69,
+                "hash": "1ae5cdd786790eb2305ec428a2377d8679e5c1a1"
+              }
+            },
+            "src/source.ts:81-94": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 81,
+                "end": 94,
+                "hash": "43e00cf63d1bbfb81cf0ef7efc2da35886e0f15c"
+              }
+            }
+          }
+        },
+        "4ea62c6c8d31": {
+          "text": "Towards Moonraker, `MOONRAKER_API_KEY` goes as `X-Api-Key` and `MOONRAKER_TOKEN` as a Bearer header. Credentials in the URL are refused, redirects are not fo...",
+          "line": 53,
+          "specs": [
+            "src/moonraker.ts:54-63",
+            "src/moonraker.ts:97-102",
+            "src/cli.ts:39-40"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 54,
+                "end": 63,
+                "hash": "9b87ada44240626a63ddec70a04033c972a842a4"
+              }
+            },
+            "src/moonraker.ts:97-102": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 97,
+                "end": 102,
+                "hash": "5adf9060ac594b9c7833eac33d6bf26046e3aa99"
+              }
+            },
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 39,
+                "end": 40,
+                "hash": "8e79dae564ada550655d32de8aec5f73fb2cb191"
+              }
+            }
+          }
+        },
+        "1c0e9e7c52a6": {
+          "text": "Read-only is enforced in code: there is no method for anything but `GET`, a path outside `READ_ONLY_PATHS` (or with a traversal segment, or an unexpected que...",
+          "line": 54,
+          "specs": [
+            "src/moonraker.ts:9-19",
+            "src/moonraker.ts:174-199"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 9,
+                "end": 19,
+                "hash": "461911f209ba269b3dd84f8eb5f638aac0a6ce1b"
+              }
+            },
+            "src/moonraker.ts:174-199": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 174,
+                "end": 199,
+                "hash": "fc011149f6f65ad994d5b1d7efe00925e701dd9e"
+              }
+            }
+          }
+        },
+        "87ced3a09bef": {
+          "text": "Moonraker, optional, at `MOONRAKER_URL` (with `MOONRAKER_API_KEY` and `MOONRAKER_TOKEN` as needed). It is the only host the server contacts, and only when th...",
+          "line": 58,
+          "specs": [
+            "src/cli.ts:25-34",
+            "src/moonraker.ts:1-5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/cli.ts": {
+              "path": "src/cli.ts",
+              "blob": "1e1c22f6c6b301ea2d10333bae22a4a685367657",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f",
+              "range": {
+                "start": 25,
+                "end": 34,
+                "hash": "60079f5eea3c556214de88b9b181705b1667e37d"
+              }
+            },
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 5,
+                "hash": "d00484b39086e48ad5ad93cc2c4b74dcbd073266"
+              }
+            }
+          }
+        },
+        "c102a131f68a": {
+          "text": "npm and the MCP registry are reached by CI and the publish workflow, not by the running server (`NPM_TOKEN` for the first publish).",
+          "line": 59,
+          "specs": [
+            ".github/workflows/publish.yml:1-30",
+            "server.json"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            ".github/workflows/publish.yml": {
+              "path": ".github/workflows/publish.yml",
+              "blob": "6899262b60f5a54147b32e9de8b4115363ccc63b",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 1,
+                "end": 30,
+                "hash": "fd1273e4ec7f3aaa596fdb645d54b22d8b2c802c"
+              }
+            },
+            "server.json": {
+              "path": "server.json",
+              "blob": "0346cfd799793fce04eaa22653040507316831be",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        }
+      },
+      "pinnedAt": "2026-11-22T09:20:56.516Z",
+      "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3"
+    },
+    "klipper-doctor-mcp-brand": {
+      "claims": {
+        "c8133f4bb51e": {
+          "text": "The package, binary and repo are `klipper-doctor-mcp`, lower case with hyphens, always in code formatting in prose.",
+          "line": 16,
+          "specs": [
+            "package.json#name",
+            "README.md:1"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#name": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "name",
+                "hash": "ec62935b7ece901d1b45d9878c8f3d50584b3994",
+                "value": "\"klipper-doctor-mcp\""
+              }
+            },
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 1,
+                "end": 1,
+                "hash": "414217349ec1da885d4d42e00169dbdc6157b9ea"
+              }
+            }
+          }
+        },
+        "2d57625d731b": {
+          "text": "The registry title is \"Klipper Doctor\" and the registry name is `io.github.kd-011/klipper-doctor-mcp`.",
+          "line": 17,
+          "specs": [
+            "server.json"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "server.json": {
+              "path": "server.json",
+              "blob": "0346cfd799793fce04eaa22653040507316831be",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "a1690018c729": {
+          "text": "The MCP server name sent to clients is `klipper-doctor-mcp`. The engine it wraps is `klipper-doctor`, a separate project.",
+          "line": 18,
+          "specs": [
+            "src/server.ts:67",
+            "README.md:3"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 67,
+                "end": 67,
+                "hash": "8fe0ad34c8eb2fab18c95ff6984d90b825fd1b6f"
+              }
+            },
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 3,
+                "end": 3,
+                "hash": "47a0d2cbcd477637ca1f40f9d7310f9a14acfc38"
+              }
+            }
+          }
+        },
+        "a1c1123f81be": {
+          "text": "The report header the engine prints is `**klipper-doctor**`, lower case.",
+          "line": 19,
+          "specs": [
+            "docs/example.md:9"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "docs/example.md": {
+              "path": "docs/example.md",
+              "blob": "35c3d6023fdbe4b964eccd0eeb59eb65c34c092d",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "range": {
+                "start": 9,
+                "end": 9,
+                "hash": "0865aededb6bcdd85d84a48d380870624f7cc137"
+              }
+            }
+          }
+        },
+        "c9b5d30fa464": {
+          "text": "Klipper, Moonraker, Claude Code, Claude Desktop and Cursor keep their own casing.",
+          "line": 20,
+          "specs": [
+            "README.md",
+            "docs/clients.md"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            },
+            "docs/clients.md": {
+              "path": "docs/clients.md",
+              "blob": "260dd0996620ae76d298768a0b0f23bcc3d05a53",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "e824e5b252f0": {
+          "text": "People who run Klipper and use an AI agent (Claude Code, Claude Desktop, Cursor), who want it to say why a print stopped. The README addresses them as \"you\" ...",
+          "line": 28,
+          "specs": [
+            "README.md:3",
+            "README.md:44-51"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 3,
+                "end": 3,
+                "hash": "47a0d2cbcd477637ca1f40f9d7310f9a14acfc38"
+              }
+            },
+            "README.md:44-51": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 44,
+                "end": 51,
+                "hash": "9872f473f52cd62c4c9400ae31f671f6c40495c3"
+              }
+            }
+          }
+        },
+        "6ba8a2ede77e": {
+          "text": "Do: say what was and was not run (\"I have run none of them, so this is from their READMEs\", \"I have not run them\"), give numbers and file names, and name the...",
+          "line": 41,
+          "specs": [
+            "README.md:40",
+            "docs/clients.md:5"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 40,
+                "end": 40,
+                "hash": "6377e4211cd44117a07edf01715a73ac9ab2245d"
+              }
+            },
+            "docs/clients.md": {
+              "path": "docs/clients.md",
+              "blob": "260dd0996620ae76d298768a0b0f23bcc3d05a53",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 5,
+                "end": 5,
+                "hash": "1028951d38b28bf0c11eefd2910c640cf1bec776"
+              }
+            }
+          }
+        },
+        "d1c4f3cefd0c": {
+          "text": "Do: use the first person singular for personal testing claims.",
+          "line": 42,
+          "specs": [
+            "README.md:22",
+            "README.md:40"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 22,
+                "end": 22,
+                "hash": "df09563614ba02aeb046feaf4bd5ad3bb3c9191f"
+              }
+            },
+            "README.md:40-40": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 40,
+                "end": 40,
+                "hash": "6377e4211cd44117a07edf01715a73ac9ab2245d"
+              }
+            }
+          }
+        },
+        "b409864f4123": {
+          "text": "Do not: use em dashes, which `npm run check` rejects, or marketing words, which CONTRIBUTING bans.",
+          "line": 43,
+          "specs": [
+            "scripts/check-text.mjs",
+            "CONTRIBUTING.md:17"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "scripts/check-text.mjs": {
+              "path": "scripts/check-text.mjs",
+              "blob": "518a99820365d82c80c152100a31ff6f74c46b2d",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f"
+            },
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 17,
+                "end": 17,
+                "hash": "67257155be73301217be203a730aa46457a0f613"
+              }
+            }
+          }
+        },
+        "a69ef72be14b": {
+          "text": "Banned words: none are listed beyond \"no marketing words\".",
+          "line": 44,
+          "specs": [
+            "CONTRIBUTING.md:17"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "CONTRIBUTING.md": {
+              "path": "CONTRIBUTING.md",
+              "blob": "be0e42dbd2a16366c78d2df90e96d179a54f2f3f",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 17,
+                "end": 17,
+                "hash": "67257155be73301217be203a730aa46457a0f613"
+              }
+            }
+          }
+        },
+        "d9e868c21858": {
+          "text": "README opener: \"Ask your AI agent why a Klipper print stopped.\"",
+          "line": 48,
+          "specs": [
+            "README.md:3"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 3,
+                "end": 3,
+                "hash": "47a0d2cbcd477637ca1f40f9d7310f9a14acfc38"
+              }
+            }
+          }
+        },
+        "9edc586ac927": {
+          "text": "Registry description: \"Read-only Klipper diagnosis: explains why a print died and lints printer.cfg.\"",
+          "line": 49,
+          "specs": [
+            "server.json"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "server.json": {
+              "path": "server.json",
+              "blob": "0346cfd799793fce04eaa22653040507316831be",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "f9ea550d7c02": {
+          "text": "Tool descriptions open with when to use it: \"Use when a Klipper print stopped, failed or shut down, or the printer shows an error.\"",
+          "line": 50,
+          "specs": [
+            "src/server.ts:73-75"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/server.ts": {
+              "path": "src/server.ts",
+              "blob": "e1dcb68445a5f3790e4ab3ad478b91438ffa2071",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 73,
+                "end": 75,
+                "hash": "3e1fe4117bd210d84e4669ca2c0e83b138553773"
+              }
+            }
+          }
+        },
+        "e263ee86aaf0": {
+          "text": "Install CTA: \"claude mcp add klipper-doctor -- npx -y github:kd-011/klipper-doctor-mcp\".",
+          "line": 51,
+          "specs": [
+            "README.md:17"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 17,
+                "end": 17,
+                "hash": "6dfa71275adb818bcaade986658f37008b2fde52"
+              }
+            }
+          }
+        },
+        "01306df9c97d": {
+          "text": "Section titles are plain nouns and questions: \"Try it\", \"What it gives the agent\", \"Other tools\", \"When not to use it\".",
+          "line": 52,
+          "specs": [
+            "README.md"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "3ea11786a02a": {
+          "text": "Error tone: say what is wrong and what to do next, for example \"Moonraker is not configured. Set the MOONRAKER_URL environment variable (for example http://p...",
+          "line": 53,
+          "specs": [
+            "src/source.ts:30-36"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/source.ts": {
+              "path": "src/source.ts",
+              "blob": "237f64b87c21e8b474f46b21f0c6d9d740e536d1",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 30,
+                "end": 36,
+                "hash": "e1965e5c6eb150dd719d21fba746abf847cf0fc6"
+              }
+            }
+          }
+        },
+        "ba962adf0307": {
+          "text": "Rejections state the reason without alarm: \"Refusing <path>: this server is read-only and that path is not allowed.\"",
+          "line": 54,
+          "specs": [
+            "src/moonraker.ts:174-180"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "src/moonraker.ts": {
+              "path": "src/moonraker.ts",
+              "blob": "8ea576c482dd4a698639de7db1bc5cdffbeae910",
+              "commit": "274e5ae4280b89f99af440c3ee0aad463bfd93cd",
+              "range": {
+                "start": 174,
+                "end": 180,
+                "hash": "a0fe9295956b51861f89926d0444abec922a2038"
+              }
+            }
+          }
+        },
+        "de115f7e497f": {
+          "text": "The social card is `.github/social-preview.png`; its text is not read here.",
+          "line": 55,
+          "specs": [
+            ".github/social-preview.png"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            ".github/social-preview.png": {
+              "path": ".github/social-preview.png",
+              "blob": "765cd315ede21f5c3fe1ef38c516c2e437ded750",
+              "commit": "c8798ecb2e04115416a09bf36d3cb27d8e1f0e93"
+            }
+          }
+        },
+        "3090b71d682b": {
+          "text": "Social preview card: `.github/social-preview.png`.",
+          "line": 59,
+          "specs": [
+            ".github/social-preview.png"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            ".github/social-preview.png": {
+              "path": ".github/social-preview.png",
+              "blob": "765cd315ede21f5c3fe1ef38c516c2e437ded750",
+              "commit": "c8798ecb2e04115416a09bf36d3cb27d8e1f0e93"
+            }
+          }
+        },
+        "14103e68d7b2": {
+          "text": "README pictures: `assets/session.png` (wide) and `assets/session-hero.png` (narrow, for phones).",
+          "line": 60,
+          "specs": [
+            "README.md:5-8",
+            "assets/session.json"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 5,
+                "end": 8,
+                "hash": "73c0279b5b7496db196f0b597c7d189729621074"
+              }
+            },
+            "assets/session.json": {
+              "path": "assets/session.json",
+              "blob": "05e6d770e8542babae3f58d121b78cdb0b0b7978",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6"
+            }
+          }
+        },
+        "0c7c7408be01": {
+          "text": "No logo and no favicon: this is a package with no site.",
+          "line": 61,
+          "specs": [
+            "package.json#files"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "package.json#files": {
+              "path": "package.json",
+              "blob": "9a8bf939febb1aeb34e5fa2da5854547e4c0c1bf",
+              "commit": "9b93bfd4b011b8e3b5bd75cf0ff14efa50f44048",
+              "jsonKey": {
+                "key": "files",
+                "hash": "66c6876eb194ff9d9b84b171de5e8568f9511058",
+                "value": "[\"dist\",\"server.json\",\"README.md\",\"LICENSE\"]"
+              }
+            }
+          }
+        },
+        "d0c51dddeb28": {
+          "text": "Licence: MIT, copyright \"2026 kd-011\".",
+          "line": 65,
+          "specs": [
+            "LICENSE:1-3"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "LICENSE": {
+              "path": "LICENSE",
+              "blob": "017a3dc11f5bd2f877b6dd3a9cb87eeadd26d5d8",
+              "commit": "7d006281c6ebe260ce1dae452af28c39fc59e986",
+              "range": {
+                "start": 1,
+                "end": 3,
+                "hash": "9af6c2d48f70a7ddda6188f0d8e40553ada61bd7"
+              }
+            }
+          }
+        },
+        "3b0afe683b28": {
+          "text": "Bugs and feature requests go through the GitHub issue templates, with blank issues off. A wrong diagnosis goes to klipper-doctor.",
+          "line": 66,
+          "specs": [
+            ".github/ISSUE_TEMPLATE/config.yml"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            ".github/ISSUE_TEMPLATE/config.yml": {
+              "path": ".github/ISSUE_TEMPLATE/config.yml",
+              "blob": "535a0040bb1704fdea4333877775aea3a13a42ea",
+              "commit": "59288e34746b17e000c058d0854a0f753619d31f"
+            }
+          }
+        },
+        "6fd0023b6745": {
+          "text": "Security reports go through GitHub private vulnerability reporting on the repo.",
+          "line": 67,
+          "specs": [
+            "SECURITY.md:12-14"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "SECURITY.md": {
+              "path": "SECURITY.md",
+              "blob": "8a63ffed817639c6acd6664f8c4190fc9577393e",
+              "commit": "7f0abf898864351ae3d34ce7b7faadc90a9087ce",
+              "range": {
+                "start": 12,
+                "end": 14,
+                "hash": "a19810dca4714f8240fd6918e0b96e0236bf5ea3"
+              }
+            }
+          }
+        },
+        "65005064d575": {
+          "text": "No privacy or terms page and no email address are shipped. The privacy notice is the README and SECURITY.md warning that logs reach your AI provider.",
+          "line": 68,
+          "specs": [
+            "README.md:36",
+            "SECURITY.md:8"
+          ],
+          "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3",
+          "files": {
+            "README.md": {
+              "path": "README.md",
+              "blob": "364c8602a9426e690ec986a72672f3dffdfb5900",
+              "commit": "4a227aee135216a70e1b9bd6d0ae0b4d061d05f6",
+              "range": {
+                "start": 36,
+                "end": 36,
+                "hash": "bd5ff4472c4f20e3688c3c01d838c6da3c4ec678"
+              }
+            },
+            "SECURITY.md": {
+              "path": "SECURITY.md",
+              "blob": "8a63ffed817639c6acd6664f8c4190fc9577393e",
+              "commit": "7f0abf898864351ae3d34ce7b7faadc90a9087ce",
+              "range": {
+                "start": 8,
+                "end": 8,
+                "hash": "e1f9d11697ed2e19ac885dba63c3b1a72adba04a"
+              }
+            }
+          }
+        }
+      },
+      "pinnedAt": "2026-11-22T09:20:56.525Z",
+      "head": "71ddf2aa6f6a48799537eed5f3ea92d85a5f4cc3"
+    }
+  }
+}
